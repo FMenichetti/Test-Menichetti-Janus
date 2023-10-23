@@ -46,5 +46,10 @@ namespace Stock
 
             Response.Redirect("Formulario.aspx", false);
         }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Formulario.aspx", false);
+        }
     }
 }

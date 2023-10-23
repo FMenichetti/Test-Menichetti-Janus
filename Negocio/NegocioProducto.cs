@@ -29,6 +29,7 @@ namespace Negocio
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Id= (int)datos.Lector["Id"];
                     aux.oTipo.Descripcion = (string)datos.Lector["Desc"];
+                    aux.oTipo.Id = (int)datos.Lector["IdTipo"];
                     aux.Precio = (decimal)datos.Lector["Precio"];
                     aux.oStock.Cantidad = (int)datos.Lector["Cant"];
                     lista.Add(aux);
@@ -58,7 +59,8 @@ namespace Negocio
                 datos.setearParametro("@idTipoProducto", producto.oTipo.Id);
                 datos.setearParametro("@nombre", producto.Nombre);
                 datos.setearParametro("@precio", producto.Precio);
-               
+                datos.setearParametro("@cantidad", producto.oStock.Cantidad);
+
                 datos.ejecutarAccion();
 
             }

@@ -7,11 +7,11 @@
      <asp:GridView runat="server" id="Dgv" AutoGenerateColumns="false" class="table">
         <Columns>
 
-            <asp:BoundField HeaderText="Id" DataField="Id" />
+            <asp:BoundField HeaderText="Codigo de producto" DataField="Id" />
 
             <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
 
-            <asp:TemplateField HeaderText="Descripcion">
+            <asp:TemplateField HeaderText="Clasificacion">
                 <ItemTemplate>
                     <%# Eval("oTipo.Descripcion") %>
                 </ItemTemplate>
@@ -27,11 +27,13 @@
 
             <asp:TemplateField HeaderText="Seleccion">
             <ItemTemplate>
-                <asp:Button runat="server" Text="Editar" OnClick="Unnamed_Click" />
+                <asp:Button runat="server" Text="Editar Producto" OnClick="Unnamed_Click" />
             </ItemTemplate>
         </asp:TemplateField>
 
         </Columns>
     </asp:GridView>
+
+    <asp:Button ID="Button1" runat="server" Text="Nuevo Producto" Class="btn btn-primary" OnClick="Button1_Click" />
 
 </asp:Content>

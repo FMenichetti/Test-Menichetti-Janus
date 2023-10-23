@@ -17,7 +17,7 @@
                 <div class="p-2 p-lg-3 bg-light rounded-3 text-center">
                     <div class="m-4 m-lg-5">
                         <h1 class="display-5 fw-bold">Store app!</h1>
-                        <p class="fs-4">Estas en la web de manejo de stock de el almacen.</p>
+                        <p class="fs-4">Estas en la web de manejo de stock del almacen.</p>
 
                     </div>
                 </div>
