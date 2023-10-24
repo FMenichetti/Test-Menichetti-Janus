@@ -11,31 +11,37 @@ namespace Stock
 {
     public partial class Formulario : System.Web.UI.Page
     {
+
+
+        public Boolean modificar = false;
+        int id;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
+                id = 0;
+                //Carga de Drop down list con los tipos de productos
+                NegocioTipos tipoNegocio = new NegocioTipos();
+                List<Tipo> lista = tipoNegocio.listarTipo();
 
-            //Carga de Drop down list con los tipos de productos
-            NegocioTipos tipoNegocio = new NegocioTipos();
-            List<Tipo> lista = tipoNegocio.listarTipo();
 
-
-            ddl_Tipo.DataSource = lista;
-            ddl_Tipo.DataTextField = "Descripcion";
-            ddl_Tipo.DataValueField = "Id";
-            ddl_Tipo.DataBind();
+                ddl_Tipo.DataSource = lista;
+                ddl_Tipo.DataTextField = "Descripcion";
+                ddl_Tipo.DataValueField = "Id";
+                ddl_Tipo.DataBind();
             }
 
 
             //En caso de ingresar por Editar, guardo el ID 
             //Filtro el producto de la lista
             //Auto completo los datos del producto seleccionado
-            if (Convert.ToString(Session["Id"]) != "")
+            if ((Convert.ToString(Session["Id"]) != "") && !IsPostBack)
             {
+                modificar = true;
                 Producto producto = new Producto();
                 NegocioProducto productoNegocio = new NegocioProducto();
-                int id = Convert.ToInt32(Session["Id"].ToString());
+                id = Convert.ToInt32(Session["Id"].ToString());
                 producto = ((List<Producto>)productoNegocio.listarProducto()).Find(x => x.Id == id);
                 txt_nombre.Text = producto.Nombre;
                 //ddl_Tipo.ClearSelection();
@@ -46,15 +52,12 @@ namespace Stock
             }
 
 
-
-
-
-
         }
 
-        protected void btn_aceptar_Click(object sender, EventArgs e)
-        {
 
+
+        protected void btnNuevo_Click(object sender, EventArgs e)
+        {
             Producto aux = new Producto();
             NegocioProducto negocio = new NegocioProducto();
 
@@ -67,6 +70,26 @@ namespace Stock
 
             negocio.cargarProducto(aux);
 
+            Response.Redirect("Administrador.aspx", false);
+        }
+
+        protected void btnModificar_Click(object sender, EventArgs e)
+        {
+            NegocioProducto negocio = new NegocioProducto();
+            Producto producto = new Producto();
+            id = Convert.ToInt32(Session["Id"].ToString());
+            producto = ((List<Producto>)negocio.listarProducto()).Find(x => x.Id == id);
+
+            producto.Id = id;
+            producto.oTipo = new Tipo();
+            producto.oTipo.Id = int.Parse(ddl_Tipo.SelectedValue);
+            producto.Nombre = txt_nombre.Text;
+            producto.Precio = Convert.ToDecimal(txt_precio.Text);
+            producto.oStock = new Dominio.Stock();
+            producto.oStock.Cantidad = int.Parse(Txt_cantidad.Text);
+
+            negocio.modificarProducto(producto);
+            //Session.Clear();
             Response.Redirect("Administrador.aspx", false);
         }
     }

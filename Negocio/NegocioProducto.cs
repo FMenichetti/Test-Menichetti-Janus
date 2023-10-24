@@ -84,9 +84,11 @@ namespace Negocio
             {
                 //Se utiliza store procedure de DB
                 datos.setearProcedimiento("sp_ModificarProducto");
+                datos.setearParametro("@id", producto.Id);
                 datos.setearParametro("@idTipoProducto", producto.oTipo.Id);
                 datos.setearParametro("@nombre", producto.Nombre);
                 datos.setearParametro("@precio", producto.Precio);
+                datos.setearParametro("@cantidad", producto.oStock.Cantidad);
 
                 datos.ejecutarAccion();
 
