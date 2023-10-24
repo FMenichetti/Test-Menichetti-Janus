@@ -3,9 +3,11 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <br />
+    <div class="container">
 
-    
-    <asp:GridView runat="server" id="Dgv" AutoGenerateColumns="false" class="table">
+        
+    <asp:GridView runat="server" id="Dgv" AutoGenerateColumns="false" class="table table-striped-columns" style=" text-align:center">
         <Columns>
 
             <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
@@ -26,5 +28,8 @@
 
         </Columns>
     </asp:GridView>
+
+    </div>
+
 
 </asp:Content>

@@ -72,6 +72,7 @@
     <Content Include="Formulario.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Reporte.aspx" />
+    <Content Include="Script DB\Test2.sql.txt" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
