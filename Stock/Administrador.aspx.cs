@@ -11,7 +11,7 @@ namespace Stock
 {
     public partial class Administrador : System.Web.UI.Page
     {
-        public Boolean modificar;
+        public Boolean modificar;  //Esta variable se usa del lado FE como condicional
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -35,10 +35,10 @@ namespace Stock
             }
         }
 
-        protected void Unnamed_Click(object sender, EventArgs e)
+        protected void Unnamed_Click(object sender, EventArgs e) //Click de cualquieras de los botones de Edicion
         {
 
-            // Obténgo el botón que del click
+            // Obténgo el botón que de click
             Button btn = (Button)sender;
 
             // Encuentro la fila que contiene el botón
@@ -56,14 +56,14 @@ namespace Stock
         }
 
         
-        protected void btnNuevo_Click(object sender, EventArgs e)
+        protected void btnNuevo_Click(object sender, EventArgs e)  // btn de nuevo producto
         {
             Response.Redirect("Formulario.aspx", false);
         }
 
-        protected void btnEliminar_Click(object sender, EventArgs e)
+        protected void btnEliminar_Click(object sender, EventArgs e)   // btn eliminar producto
         {
-            // Obténgo el botón que del click
+            // Obténgo el botón que de click
             Button btn = (Button)sender;
 
             // Encuentro la fila que contiene el botón
@@ -79,7 +79,7 @@ namespace Stock
             }
         }
 
-        protected void btnConfirmar_Click(object sender, EventArgs e)
+        protected void btnConfirmar_Click(object sender, EventArgs e)  // confirmacion de eliminacion
         {
             int id = int.Parse(Session["Id"].ToString());
             NegocioProducto negocio = new NegocioProducto();
@@ -99,7 +99,7 @@ namespace Stock
             
         }
 
-        protected void btnCancelar_Click(object sender, EventArgs e)
+        protected void btnCancelar_Click(object sender, EventArgs e)   // btn cancelo eliminacion
         {
             modificar = false;
             Response.Redirect("Administrador.aspx", false);

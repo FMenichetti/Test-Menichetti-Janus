@@ -29,7 +29,7 @@
                 <asp:TextBox ID="Txt_cantidad" Class="form-control" runat="server" TextMode="Number"></asp:TextBox>
             </div>
 
-
+            <!-- Condicion de botones a mostrar, segun la accion que quiero realizar-->
 
             <%if (modificar == true)
                 { %>

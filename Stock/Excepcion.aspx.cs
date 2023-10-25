@@ -12,7 +12,7 @@ namespace Stock
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            lblError.Text = Session["Error"].ToString();
+            lblError.Text = Session["Error"].ToString();  // cargo en lbl error guardado en  session
 
         }
     }

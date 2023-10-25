@@ -46,10 +46,9 @@
     </div>
 
 
-
-
     <asp:Button ID="btnNuevo" runat="server" Text="Nuevo Producto" Class="btn btn-primary m-3 " OnClick="btnNuevo_Click" />
 
+    <!-- Condicional para mostrar los bnt de eliminacion-->
     <%if (modificar)
         {%>
     <div>

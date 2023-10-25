@@ -13,7 +13,7 @@ namespace Stock
     {
 
 
-        public Boolean modificar = false;
+        public Boolean modificar = false;  //Variable para condicion de carga de botones lado FE
         int id;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -56,7 +56,7 @@ namespace Stock
 
 
 
-        protected void btnNuevo_Click(object sender, EventArgs e)
+        protected void btnNuevo_Click(object sender, EventArgs e) // btn generar nuevo producto
         {
             Producto aux = new Producto();
             NegocioProducto negocio = new NegocioProducto();
@@ -82,7 +82,7 @@ namespace Stock
 
         }
 
-        protected void btnModificar_Click(object sender, EventArgs e)
+        protected void btnModificar_Click(object sender, EventArgs e)  // btn modificar producto
         {
             NegocioProducto negocio = new NegocioProducto();
             Producto producto = new Producto();
