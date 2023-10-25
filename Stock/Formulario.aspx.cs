@@ -61,6 +61,8 @@ namespace Stock
             Producto aux = new Producto();
             NegocioProducto negocio = new NegocioProducto();
 
+            try
+            {
             aux.Nombre = txt_nombre.Text;
             aux.oTipo = new Tipo();
             aux.oTipo.Id = int.Parse(ddl_Tipo.SelectedValue);
@@ -68,10 +70,9 @@ namespace Stock
             aux.oStock = new Dominio.Stock();
             aux.oStock.Cantidad = Convert.ToInt32(Txt_cantidad.Text);
 
-            try
-            {
             negocio.cargarProducto(aux);
 
+            Response.Redirect("Administrador.aspx", false);
             }
             catch (Exception ex )
             {
@@ -79,7 +80,6 @@ namespace Stock
                 Response.Redirect("Excepcion.aspx", false);
             }
 
-            Response.Redirect("Administrador.aspx", false);
         }
 
         protected void btnModificar_Click(object sender, EventArgs e)
@@ -89,6 +89,8 @@ namespace Stock
             id = Convert.ToInt32(Session["Id"].ToString());
             producto = ((List<Producto>)negocio.listarProducto()).Find(x => x.Id == id);
 
+            try
+            {
             producto.Id = id;
             producto.oTipo = new Tipo();
             producto.oTipo.Id = int.Parse(ddl_Tipo.SelectedValue);
@@ -97,10 +99,9 @@ namespace Stock
             producto.oStock = new Dominio.Stock();
             producto.oStock.Cantidad = int.Parse(Txt_cantidad.Text);
 
-            try
-            {
-
             negocio.modificarProducto(producto);
+
+            Response.Redirect("Administrador.aspx", false);
             }
             catch (Exception ex)
             {
@@ -108,8 +109,6 @@ namespace Stock
                 Session.Add("Error", ex.ToString());
                 Response.Redirect("Excepcion.aspx", false);
             }
-            //Session.Clear();
-            Response.Redirect("Administrador.aspx", false);
         }
     }
 }
