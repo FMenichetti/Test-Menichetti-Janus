@@ -30,7 +30,8 @@ namespace Stock
             }
             catch (Exception ex)
             {
-                throw ex;
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Excepcion.aspx", false);
             }
         }
 
@@ -83,9 +84,19 @@ namespace Stock
             int id = int.Parse(Session["Id"].ToString());
             NegocioProducto negocio = new NegocioProducto();
 
-            negocio.eliminarProducto(id);
-            modificar = false;
-            Response.Redirect("Administrador.aspx", false);
+            try
+            {
+                negocio.eliminarProducto(id);
+                modificar = false;
+                Response.Redirect("Administrador.aspx", false);
+            }
+            catch (Exception ex )
+            {
+
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Excepcion.aspx", false);
+            }
+            
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)

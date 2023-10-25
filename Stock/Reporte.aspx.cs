@@ -23,7 +23,8 @@ namespace Stock
             }
             catch (Exception ex)
             {
-                throw ex;
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Excepcion.aspx", false);
             }
             
 

@@ -68,7 +68,16 @@ namespace Stock
             aux.oStock = new Dominio.Stock();
             aux.oStock.Cantidad = Convert.ToInt32(Txt_cantidad.Text);
 
+            try
+            {
             negocio.cargarProducto(aux);
+
+            }
+            catch (Exception ex )
+            {
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Excepcion.aspx", false);
+            }
 
             Response.Redirect("Administrador.aspx", false);
         }
@@ -88,7 +97,17 @@ namespace Stock
             producto.oStock = new Dominio.Stock();
             producto.oStock.Cantidad = int.Parse(Txt_cantidad.Text);
 
+            try
+            {
+
             negocio.modificarProducto(producto);
+            }
+            catch (Exception ex)
+            {
+
+                Session.Add("Error", ex.ToString());
+                Response.Redirect("Excepcion.aspx", false);
+            }
             //Session.Clear();
             Response.Redirect("Administrador.aspx", false);
         }

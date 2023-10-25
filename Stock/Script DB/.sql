@@ -1,3 +1,4 @@
+
 --Uso Master
 use master
 GO
@@ -60,8 +61,10 @@ GO
 
 Create VIEW vw_StockProducto
 as
-select P.id , P.Nombre , T.Descripcion [Desc], P.Precio, S.Cantidad [Cant], T.id [IdTipo] from Producto P, TipoProducto T, Stock S
-where p.Id = s.IdProducto and t.Id = p.IdTipoProducto
+SELECT P.id, P.Nombre, T.Descripcion [Desc], P.Precio, S.Cantidad [Cant], T.id [IdTipo]
+FROM Producto P
+INNER JOIN Stock S ON P.Id = S.IdProducto
+INNER JOIN TipoProducto T ON T.Id = P.IdTipoProducto;
 GO
 
 --Creación de Store Procedure sp_InsertarProducto
@@ -115,6 +118,7 @@ VALUES
  ('Mecanico'),
  ('Electrico'),
  ('Libreria');
+ GO
 
  --Insert de Productos para ejemplo
 
@@ -124,9 +128,9 @@ VALUES
 (3,'Lapicera', 10.50),
 (1,'Engranaje', 25000),
 (1,'Cadena', 14000);
+GO
 
-
---Insert de Stock
+--Insert de Stock para ejemplo
 
 insert into stock(IdProducto,Cantidad)
 values 
@@ -134,3 +138,4 @@ values
 (2, 16),
 (3, 4),
 (4, 7);
+GO
